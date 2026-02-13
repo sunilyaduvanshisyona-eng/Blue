@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mero Maya ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-family: 'Comic Sans MS', cursive;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            overflow-x: hidden;
+        }
+
+        h1, h2 {
+            color: white;
+        }
+
+        .container {
+            margin-top: 80px;
+        }
+
+        button {
+            padding: 12px 25px;
+            margin: 10px;
+            font-size: 16px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            background: white;
+            color: #ff4d6d;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        #message {
+            margin: 40px auto;
+            width: 85%;
+            font-size: 18px;
+            color: white;
+            font-weight: bold;
+            line-height: 1.8;
+            opacity: 0;
+            transition: opacity 2s ease-in;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        iframe {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Mero Maya ❤️</h1>
+    <h2>Bisu 💕 (Already mine but still forever Valentine)</h2>
+
+    <div id="quiz">
+        <p style="color:white; font-size:18px;">Are we forever? 😌</p>
+        <button onclick="correctAnswer()">YES 💍</button>
+        <button onclick="wrongAnswer()">Maybe 🤨</button>
+    </div>
+
+    <div id="message"></div>
+</div>
+
+<!-- Spotify Embed - Perfect -->
+<iframe style="border-radius:12px" 
+src="https://open.spotify.com/embed/track/0tgVpDi06FyKpA1z0VMD4v" 
+width="300" height="80" frameBorder="0" 
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+</iframe>
+
+<canvas id="fireworks"></canvas>
+
+<script>
+function correctAnswer() {
+    document.getElementById("quiz").style.display = "none";
+    startFireworks();
+
+    setTimeout(() => {
+        let msg = document.getElementById("message");
+        msg.innerHTML = `
+        Bisu ❤️<br><br>
+
+        From the moment you came into my life, everything felt brighter.
+        Thank you for loving me the way you do and for always being there.<br><br>
+
+        Being apart from you is the only thing I dislike.
+        Every day away just reminds me how lucky I am to have you.<br><br>
+
+        I don’t just love you for today — I love you for all the tomorrows ahead.
+        Thank you for everything.
+        I hate being apart from you.
+        I will always be loving you, my Valentine 💕<br><br>
+
+        <span style="font-size:20px;">Lastly… 💕</span><br><br>
+
+        Ma timisanga bihe garna, sangai budo huna<br>
+        ra life bhari timilai maya garna wait garna sakdina ❤️
+        `;
+        msg.style.opacity = "1";
+    }, 2000);
+}
+
+function wrongAnswer() {
+    alert("Wrong answer 😤 Try again hehe 💕");
+}
+
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+function startFireworks() {
+    for (let i = 0; i < 180; i++) {
+        let x = Math.random() * canvas.width;
+        let y = Math.random() * canvas.height;
+        ctx.fillStyle = "white";
+        ctx.beginPath();
+        ctx.arc(x, y, 3, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+</script>
+
+</body>
+</html>
