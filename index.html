@@ -3,47 +3,64 @@
 <head>
     <title>Mero Maya ❤️</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
     <style>
         body {
             margin: 0;
             padding: 0;
+            background: linear-gradient(to bottom, #000000, #1a1a1a);
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
             text-align: center;
-            font-family: 'Comic Sans MS', cursive;
-            background: linear-gradient(to right, #ff758c, #ff7eb3);
             overflow-x: hidden;
         }
 
-        h1, h2 {
-            color: white;
+        .container {
+            padding: 60px 20px;
         }
 
-        .container {
-            margin-top: 80px;
+        h1 {
+            font-size: 48px;
+            color: #ff4da6;
+            text-shadow: 0 0 20px #ff4da6;
+        }
+
+        h2 {
+            font-size: 26px;
+            font-weight: 300;
+        }
+
+        #quiz p {
+            font-size: 22px;
+            margin-top: 30px;
         }
 
         button {
-            padding: 12px 25px;
-            margin: 10px;
-            font-size: 16px;
-            border-radius: 25px;
+            padding: 14px 30px;
+            margin: 15px;
+            font-size: 20px;
+            border-radius: 30px;
             border: none;
             cursor: pointer;
-            background: white;
-            color: #ff4d6d;
+            background: #ff4da6;
+            color: white;
             transition: 0.3s;
         }
 
         button:hover {
+            background: #ff1a8c;
             transform: scale(1.05);
         }
 
         #message {
             margin: 40px auto;
             width: 85%;
-            font-size: 18px;
-            color: white;
-            font-weight: bold;
-            line-height: 1.8;
+            font-size: 22px;
+            line-height: 2;
+            font-weight: 300;
             opacity: 0;
             transition: opacity 2s ease-in;
         }
@@ -56,51 +73,10 @@
         }
 
         iframe {
-            margin-top: 20px;
+            margin-top: 30px;
         }
-  <style>
-body {
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to bottom, #000000, #1a1a1a);
-    font-family: 'Poppins', sans-serif;
-    color: #ffffff;
-    text-align: center;
-}
-
-.container {
-    padding: 50px 20px;
-}
-
-h1 {
-    font-size: 42px;
-    color: #ff4da6;
-    text-shadow: 0 0 15px #ff4da6;
-}
-
-p {
-    font-size: 22px;
-    line-height: 1.8;
-    margin: 20px 0;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-}
-
-button {
-    padding: 12px 25px;
-    font-size: 18px;
-    background-color: #ff4da6;
-    border: none;
-    border-radius: 30px;
-    color: white;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-button:hover {
-    background-color: #ff1a8c;
-}
-</style>
-</head> <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    </style>
+</head>
 
 <body>
 
@@ -109,7 +85,7 @@ button:hover {
     <h2>Bisu 💕 (Already mine but still forever Valentine)</h2>
 
     <div id="quiz">
-        <p style="color:white; font-size:18px;">Are we forever? 😌</p>
+        <p>Are we forever? 😌</p>
         <button onclick="correctAnswer()">YES 💍</button>
         <button onclick="wrongAnswer()">Maybe 🤨</button>
     </div>
@@ -117,7 +93,7 @@ button:hover {
     <div id="message"></div>
 </div>
 
-<!-- Spotify Embed - Perfect -->
+<!-- Spotify Embed -->
 <iframe style="border-radius:12px" 
 src="https://open.spotify.com/embed/track/0tgVpDi06FyKpA1z0VMD4v" 
 width="300" height="80" frameBorder="0" 
@@ -147,7 +123,7 @@ function correctAnswer() {
         I hate being apart from you.
         I will always be loving you, my Valentine 💕<br><br>
 
-        <span style="font-size:20px;">Lastly… 💕</span><br><br>
+        <span style="font-size:24px; color:#ff4da6;">Lastly… 💕</span><br><br>
 
         Ma timisanga bihe garna, sangai budo huna<br>
         ra life bhari timilai maya garna wait garna sakdina ❤️
@@ -169,7 +145,7 @@ function startFireworks() {
     for (let i = 0; i < 180; i++) {
         let x = Math.random() * canvas.width;
         let y = Math.random() * canvas.height;
-        ctx.fillStyle = "white";
+        ctx.fillStyle = "#ff4da6";
         ctx.beginPath();
         ctx.arc(x, y, 3, 0, Math.PI * 2);
         ctx.fill();
