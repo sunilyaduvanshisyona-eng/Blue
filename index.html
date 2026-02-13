@@ -15,11 +15,13 @@
             font-family: 'Poppins', sans-serif;
             color: #ffffff;
             text-align: center;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
         .container {
             padding: 60px 20px;
+            position: relative;
+            z-index: 2;
         }
 
         h1 {
@@ -29,19 +31,20 @@
         }
 
         h2 {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 300;
+            margin-bottom: 30px;
         }
 
         #quiz p {
             font-size: 22px;
-            margin-top: 30px;
+            margin-top: 20px;
         }
 
         button {
             padding: 14px 30px;
             margin: 15px;
-            font-size: 20px;
+            font-size: 18px;
             border-radius: 30px;
             border: none;
             cursor: pointer;
@@ -60,7 +63,6 @@
             width: 85%;
             font-size: 22px;
             line-height: 2;
-            font-weight: 300;
             opacity: 0;
             transition: opacity 2s ease-in;
         }
@@ -69,41 +71,67 @@
             position: fixed;
             top: 0;
             left: 0;
+            z-index: 1;
             pointer-events: none;
         }
 
         iframe {
             margin-top: 30px;
+            z-index: 2;
+            position: relative;
         }
     </style>
 </head>
 
 <body>
 
+<canvas id="fireworks"></canvas>
+
 <div class="container">
     <h1>Mero Maya ❤️</h1>
     <h2>Bisu 💕 (Already mine but still forever Valentine)</h2>
 
     <div id="quiz">
-        <p>Are we forever? 😌</p>
-        <button onclick="correctAnswer()">YES 💍</button>
-        <button onclick="wrongAnswer()">Maybe 🤨</button>
+        <p>Do you love me? 😌</p>
+        <button onclick="correctAnswer()">YES ❤️</button>
+        <button onclick="wrongAnswer()">No 😤</button>
     </div>
 
     <div id="message"></div>
+
+    <!-- Spotify Embed -->
+    <iframe style="border-radius:12px" 
+    src="https://open.spotify.com/embed/track/0tgVpDi06FyKpA1z0VMD4v" 
+    width="300" height="80" frameBorder="0" 
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+    </iframe>
 </div>
 
-<!-- Spotify Embed -->
-<iframe style="border-radius:12px" 
-src="https://open.spotify.com/embed/track/0tgVpDi06FyKpA1z0VMD4v" 
-width="300" height="80" frameBorder="0" 
-allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-</iframe>
-
-<canvas id="fireworks"></canvas>
-
 <script>
+let step = 0;
+
 function correctAnswer() {
+    const quiz = document.getElementById("quiz");
+
+    if (step === 0) {
+        quiz.innerHTML = `
+        <p>Will you stay with me forever? 💕</p>
+        <button onclick="correctAnswer()">YES ALWAYS 💍</button>
+        <button onclick="wrongAnswer()">No 😤</button>
+        `;
+        step++;
+    } 
+    else if (step === 1) {
+        quiz.innerHTML = `
+        <p>Will you marry me one day? 👀</p>
+        <button onclick="finalAnswer()">YES FOREVER ❤️</button>
+        <button onclick="wrongAnswer()">Maybe 🤨</button>
+        `;
+        step++;
+    }
+}
+
+function finalAnswer() {
     document.getElementById("quiz").style.display = "none";
     startFireworks();
 
@@ -119,8 +147,6 @@ function correctAnswer() {
         Every day away just reminds me how lucky I am to have you.<br><br>
 
         I don’t just love you for today — I love you for all the tomorrows ahead.
-        Thank you for everything.
-        I hate being apart from you.
         I will always be loving you, my Valentine 💕<br><br>
 
         <span style="font-size:24px; color:#ff4da6;">Lastly… 💕</span><br><br>
@@ -136,20 +162,58 @@ function wrongAnswer() {
     alert("Wrong answer 😤 Try again hehe 💕");
 }
 
+/* FIREWORKS */
+
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+let particles = [];
+
 function startFireworks() {
-    for (let i = 0; i < 180; i++) {
-        let x = Math.random() * canvas.width;
-        let y = Math.random() * canvas.height;
-        ctx.fillStyle = "#ff4da6";
-        ctx.beginPath();
-        ctx.arc(x, y, 3, 0, Math.PI * 2);
-        ctx.fill();
+    for (let i = 0; i < 6; i++) {
+        explode();
     }
+    animate();
+}
+
+function explode() {
+    let x = Math.random() * canvas.width;
+    let y = Math.random() * canvas.height / 2;
+
+    for (let i = 0; i < 100; i++) {
+        particles.push({
+            x: x,
+            y: y,
+            angle: Math.random() * 2 * Math.PI,
+            speed: Math.random() * 6 + 2,
+            life: 100
+        });
+    }
+}
+
+function animate() {
+    ctx.fillStyle = "rgba(0,0,0,0.2)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach((p, index) => {
+        p.x += Math.cos(p.angle) * p.speed;
+        p.y += Math.sin(p.angle) * p.speed;
+        p.life--;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = "#ff4da6";
+        ctx.fill();
+
+        if (p.life <= 0) {
+            particles.splice(index, 1);
+        }
+    });
+
+    requestAnimationFrame(animate);
 }
 </script>
 
